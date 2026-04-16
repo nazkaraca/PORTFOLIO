@@ -1,13 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    background-color: #fdfdfd;
     color: #1a1a1a;
-    line-height: 1.5;
-    padding: 0 40px;
+    line-height: 1.6;
+    padding: 0 5%;
+    overflow-x: hidden;
 }
 
 
@@ -15,80 +20,130 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 0;
+    padding: 60px 0 40px 0;
     border-bottom: 1px solid #eee;
 }
 
-nav h1 { font-size: 18px; letter-spacing: 2px; }
+nav h1 {
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px; 
+}
 
 .nav-links a {
     text-decoration: none;
-    color: #999;
-    margin-left: 30px;
-    font-size: 13px;
-    font-weight: bold;
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.nav-links a.active, .nav-links a:hover {
-    color: #000;
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 
 .project-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* İki sütun */
-    gap: 40px;
-    margin-top: 60px;
-}
-
-.project-card {
-    text-decoration: none;
-    color: inherit;
-    position: relative;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 80px;
 }
 
 .image-box {
-    background-color: #f5f5f5;
-    aspect-ratio: 4/3;
+    width: 100%;
+    height: 400px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border: 1px solid #eee;
+    transition: transform 0.4s ease;
 }
 
-.image-box img { width: 100%; transition: transform 0.5s; }
-.project-card:hover img { transform: scale(1.05); }
-
-.status-tag {
-    position: absolute;
-    top: 15px; left: 15px;
-    background: #000; color: #fff;
-    padding: 4px 8px; font-size: 10px;
-    z-index: 5;
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease, transform 0.5s ease;
 }
 
-.project-info { margin-top: 15px; }
-.project-info h3 { font-size: 16px; margin-bottom: 5px; }
-.project-info p { font-size: 13px; color: #777; }
+
+.project-card:hover .image-box img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
 
 
 .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 800px;
+    margin: 100px auto;
 }
 
-.about-text h2 { font-size: 32px; font-weight: 400; margin-bottom: 30px; }
-.detail-container { margin-top: 80px; max-width: 900px; }
-.large-image { background: #f5f5f5; width: 100%; height: 500px; margin: 40px 0; display: flex; align-items: center; justify-content: center; }
+.about-text h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
 
+.about-image {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.about-image .image-box {
+    height: 500px;
+    border-radius: 2px;
+}
+
+
+.status-tag {
+    background-color: #ff3b30;
+    color: white;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+}
 
 @media (max-width: 768px) {
-    body { padding: 0 20px; }
-    nav { padding: 30px 0; flex-direction: column; gap: 20px; }
-    .project-container, .about-grid { grid-template-columns: 1fr; }
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-text h2 {
+        font-size: 1.8rem;
+    }
 }
-
-.placeholder-text { color: #ccc; font-style: italic; }
