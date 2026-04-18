@@ -63,14 +63,6 @@ nav h1 {
     width: 100%;
 }
 
-
-.project-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-    margin-top: 80px;
-}
-
 .image-box {
     width: 100%;
     height: 350px; /* Biraz küçülttük ki ekranı çok kaplamasın */
@@ -146,4 +138,47 @@ nav h1 {
     .about-text h2 {
         font-size: 1.8rem;
     }
+}
+
+.project-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 80px;
+}
+
+.image-box {
+    height: 280px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.analysis {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.analysis img {
+    width: 45%;  /* yan yana */
+    height: auto;
+}
+
+.about-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ortalar */
+    gap: 40px;
+    max-width: 800px;
+    margin: 100px auto;
+    text-align: center;
 }
