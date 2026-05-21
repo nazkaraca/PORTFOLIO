@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // =========================================================================
     // ÖZELLİK 1: İNTERAKTİF YETENEK & SERTİFİKA FİLTRESİ (about.html)
-    // Açıklama: Yazılımlar ile web tasarım sertifikasını dinamik olarak ayırır.
     // =========================================================================
     const filterButtons = document.querySelectorAll(".filter-btn");
     const filterItems = document.querySelectorAll(".item");
@@ -34,15 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    }
 
     // =========================================================================
     // ÖZELLİK 2: TASARIM STÜDYOSU JÜRİ GERİ SAYIM PANELİ (index.html)
-    // Açıklama: Mimari projelerin zamana karşı yarışını simgeleyen dinamik bir sayaç.
     // =========================================================================
     const statusTag = document.getElementById("projectStatus");
     if (statusTag) {
-        // Akademik Takvim Son Teslim Tarihi: 2 Haziran 2026 14:00
         const juryDeadline = new Date("June 2, 2026 14:00:00").getTime();
 
         const updateJuryCountdown = () => {
@@ -52,20 +48,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (distance > 0) {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                // Minimalist pafta dili gösterimi
                 statusTag.innerHTML = `WIP — ${days}d ${hours}h TO FINAL JURY`;
             } else {
                 statusTag.innerHTML = "PROJECT ARCHIVED / JURY COMPLETED";
-                statusTag.style.backgroundColor = "#1b5e20"; // Tamamlandığında kalıcı mimari yeşil
+                statusTag.style.backgroundColor = "#1b5e20";
             }
         };
         updateJuryCountdown();
-        setInterval(updateJuryCountdown, 60000); // Sistemi yormadan dakikada bir kontrol eder
+        setInterval(updateJuryCountdown, 60000);
     }
 
     // =========================================================================
     // ÖZELLİK 3: RESPONSIVE MOBİL BURGER MENÜ (Tüm Sayfalar)
-    // Açıklama: Sitenin dar ekranlarda responsive kalmasını sağlayan görünürlük tetikleyicisi.
     // =========================================================================
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
@@ -73,18 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (menuToggle && navLinks) {
         menuToggle.addEventListener("click", () => {
             navLinks.classList.toggle("mobile-active");
-            // Menü durumuna göre ikon değişimi (Aç/Kapat)
             menuToggle.innerHTML = navLinks.classList.contains("mobile-active") ? "✕" : "☰";
         });
     }
 
     // =========================================================================
     // ÖZELLİK 4: MINIMALIST DARK/LIGHT TEMA DEĞİŞTİRİCİ (Tüm Sayfalar)
-    // Açıklama: Gece pafta çizen mimarlar için lokal hafıza destekli karanlık mod.
     // =========================================================================
     const themeToggle = document.getElementById("themeToggle");
     
-    // Tarayıcı hafızasından önceki seçimi yükle
     if (localStorage.getItem("portfolio-theme") === "dark") {
         document.body.classList.add("dark-theme");
     }
@@ -93,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
         themeToggle.addEventListener("click", () => {
             document.body.classList.toggle("dark-theme");
             
-            // Kullanıcının tercihini kaydet
             if (document.body.classList.contains("dark-theme")) {
                 localStorage.setItem("portfolio-theme", "dark");
             } else {
@@ -104,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // =========================================================================
     // ÖZELLİK 5: PAFTA DETAY LIGHTBOX İNCELEME MODÜLÜ (project-detail.html)
-    // Açıklama: Paftaların jüri üyeleri tarafından detaylı incelenmesi için tam ekran görünümü.
     // =========================================================================
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
@@ -127,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Boşluğa tıklayınca da kapansın
         lightbox.addEventListener("click", (e) => {
             if (e.target === lightbox) {
                 lightbox.style.display = "none";
