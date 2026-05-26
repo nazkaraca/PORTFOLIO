@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- JURY COUNTDOWN (INDEX PAGE) ---
     const statusTag = document.getElementById("projectStatus");
     if (statusTag) {
-        // Yeni Jüri Tarihi: 22 Haziran 2026, Saat: 09:00
         const juryDeadline = new Date("June 22, 2026 09:00:00").getTime();
 
         const updateJuryCountdown = () => {
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Tasarıma uygun akıcı görünüm (Örn: WIP — 26d 14h 05m 23s TO FINAL JURY)
                 statusTag.innerHTML = `WIP — ${days}d ${hours}h ${minutes}m ${seconds}s TO FINAL JURY`;
             } else {
                 statusTag.innerHTML = "PROJECT ARCHIVED / JURY COMPLETED";
@@ -49,8 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 statusTag.style.color = "#ffffff";
             }
         };
-        
-        // İlk yüklemede çalıştır ve her saniyede bir (1000ms) güncelle
         updateJuryCountdown();
         setInterval(updateJuryCountdown, 1000);
     }
@@ -76,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (themeToggle) {
         themeToggle.addEventListener("click", () => {
             document.body.classList.toggle("dark-theme");
-            
             if (document.body.classList.contains("dark-theme")) {
                 localStorage.setItem("portfolio-theme", "dark");
             } else {
@@ -96,7 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
             img.addEventListener("click", () => {
                 lightbox.style.display = "flex";
                 lightboxImg.src = img.src;
-                lightboxCaption.innerHTML = img.alt;
+                // Yazının senkronize olması için data-caption etiketini okuyoruz
+                lightboxCaption.innerHTML = img.getAttribute("data-caption");
             });
         });
 
