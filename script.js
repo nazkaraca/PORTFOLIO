@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
- 
+    // --- SKILLS FILTERING (ABOUT PAGE) ---
     const filterButtons = document.querySelectorAll(".filter-btn");
     const filterItems = document.querySelectorAll(".item");
 
@@ -25,10 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-  
+    // --- JURY COUNTDOWN (INDEX PAGE) ---
     const statusTag = document.getElementById("projectStatus");
     if (statusTag) {
-        const juryDeadline = new Date("June 2, 2026 14:00:00").getTime();
+        // Yeni Jüri Tarihi: 22 Haziran 2026, Saat: 09:00
+        const juryDeadline = new Date("June 22, 2026 09:00:00").getTime();
 
         const updateJuryCountdown = () => {
             const currentTime = new Date().getTime();
@@ -37,17 +38,24 @@ document.addEventListener("DOMContentLoaded", () => {
             if (distance > 0) {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                statusTag.innerHTML = `WIP — ${days}d ${hours}h TO FINAL JURY`;
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Tasarıma uygun akıcı görünüm (Örn: WIP — 26d 14h 05m 23s TO FINAL JURY)
+                statusTag.innerHTML = `WIP — ${days}d ${hours}h ${minutes}m ${seconds}s TO FINAL JURY`;
             } else {
                 statusTag.innerHTML = "PROJECT ARCHIVED / JURY COMPLETED";
                 statusTag.style.backgroundColor = "#1b5e20";
+                statusTag.style.color = "#ffffff";
             }
         };
+        
+        // İlk yüklemede çalıştır ve her saniyede bir (1000ms) güncelle
         updateJuryCountdown();
-        setInterval(updateJuryCountdown, 60000);
+        setInterval(updateJuryCountdown, 1000);
     }
 
-  
+    // --- MOBILE MENU TOGGLE ---
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -58,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-  
+    // --- DARK / LIGHT THEME TOGGLE ---
     const themeToggle = document.getElementById("themeToggle");
     
     if (localStorage.getItem("portfolio-theme") === "dark") {
@@ -77,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-   
+    // --- LIGHTBOX GALLERY (PROJECT DETAIL) ---
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxCaption = document.getElementById("lightboxCaption");
