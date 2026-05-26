@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- JURY COUNTDOWN (INDEX PAGE) ---
     const statusTag = document.getElementById("projectStatus");
     if (statusTag) {
+        // Hedef jüri tarihi: 22 Haziran 2026
         const juryDeadline = new Date("June 22, 2026 09:00:00").getTime();
 
         const updateJuryCountdown = () => {
@@ -91,7 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
             img.addEventListener("click", () => {
                 lightbox.style.display = "flex";
                 lightboxImg.src = img.src;
-                // Yazının senkronize olması için data-caption etiketini okuyoruz
+                
+                // Burayı güncelledik: alt attribute yerine HTML'deki data-caption değerini çekiyor
                 lightboxCaption.innerHTML = img.getAttribute("data-caption");
             });
         });
